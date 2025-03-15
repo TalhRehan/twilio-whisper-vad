@@ -1,0 +1,21 @@
+{
+  "name": "twilio-whisper-vad",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "ffmpeg-static": "^5.2.0",
+    "node-record-lpcm16": "^1.0.1",
+    "twilio": "^5.5.0",
+    "vad": "^0.0.1",
+    "wav": "^1.0.2",
+    "ws": "^8.18.1"
+  }
+}
