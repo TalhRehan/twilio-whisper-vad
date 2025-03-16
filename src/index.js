@@ -1,12 +1,17 @@
-require('dotenv').config();
+require('dotenv').config(); // Ensure environment variables are loaded
 const twilio = require('twilio');
 const ws = require('ws');
-const { processAudioStream } = require('./audioProcessor'); // Import the function
+const { processAudioStream } = require('./audioProcessor');
 
 // Load Twilio credentials from environment variables
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const streamUrl = process.env.TWILIO_STREAM_URL;
+
+if (!accountSid || !authToken || !streamUrl) {
+    console.error('Twilio credentials or stream URL are missing. Check your .env file.');
+    process.exit(1); // Exit if credentials are missing
+}
 
 // Initialize Twilio client
 const client = twilio(accountSid, authToken);
@@ -31,7 +36,9 @@ socket.on('message', (data) => {
     console.log('Received audio stream data:', data);
 
     // Process the audio stream using the imported function
-    processAudioStream(data);
+    processAudioStream(data).catch((error) => {
+        console.error('Error processing audio stream:', error);
+    });
 });
 
 // Event: When the WebSocket connection is closed
