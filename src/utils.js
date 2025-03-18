@@ -35,7 +35,7 @@ const splitAudioIntoChunks = (audioData, sampleRate = 16000, bitDepth = 16) => {
         offset += chunkSize;
     }
 
-    return chunks;
+    return chunk;
 };
 
 /**
